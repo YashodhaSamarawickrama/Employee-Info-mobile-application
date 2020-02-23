@@ -1,7 +1,8 @@
 {
   "name": "Employee-Information",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
