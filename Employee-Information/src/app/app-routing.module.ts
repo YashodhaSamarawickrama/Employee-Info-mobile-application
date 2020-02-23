@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'detailview',
     loadChildren: () => import('./detailview/detailview.module').then( m => m.DetailviewPageModule)
+  },
+  {
+    path: 'editview',
+    loadChildren: () => import('./editview/editview.module').then( m => m.EditviewPageModule)
   }
 ];
 @NgModule({
