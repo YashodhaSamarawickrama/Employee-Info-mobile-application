@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { timer } from 'rxjs';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
   showSplash = true ; 
   constructor(
     private platform: Platform,
+    private storage : Storage,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
     //rootPage = SplashScreen,
