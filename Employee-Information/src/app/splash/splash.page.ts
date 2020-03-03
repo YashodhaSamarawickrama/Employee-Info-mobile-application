@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {NavController } from '@ionic/angular';
+import {ListviewPage} from '../listview/listview.page';
 
 @Component({
   selector: 'app-splash',
@@ -7,10 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SplashPage implements OnInit {
 
-  constructor() { }
+  constructor(
+)
+  { }
 
   ngOnInit() {
     
   }
+
+  
 
 }
