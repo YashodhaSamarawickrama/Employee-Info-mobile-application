@@ -8,26 +8,26 @@ import { Observable } from 'rxjs';
   styleUrls: ['./listview.page.scss'],
 })
 export class ListviewPage implements OnInit {
-
-  // employee: Employee[] = [];
-
-  // employees = {};
-
+  employees : Employee[]=[];
+  employee = {};
   constructor(
-    //  public db: DatabaseService
+    private db: DatabaseService
      ) 
     {
 
    }
 
   ngOnInit() {
-    // this.db.getDatabaseState().subscribe(rdy => {
-    //   if (rdy) {
-    //     this.db.getEmployees().subscribe(emp=> {
-    //       this.employees = emp;
-    //     })
-    //   }
-    // });
+    this.db.getDatabaseState().subscribe(rdy => {
+      if (rdy) {
+        this.db.getEmployees().subscribe(emps => {
+          this.employees = emps;
+          console.log("hey");
+          console.log(this.employees);
+        })
+      }
+    });
+    
   }
 
 }

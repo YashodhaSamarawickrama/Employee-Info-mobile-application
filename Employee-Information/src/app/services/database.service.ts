@@ -6,10 +6,10 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface Employee {
-  eid: number,
-  name: string,
-  gender : string,
-  address: string
+  empid: number,
+  Name: string,
+  Gender : string,
+  Address: string
 }
 @Injectable({
   providedIn: 'root'
@@ -53,21 +53,16 @@ export class DatabaseService {
     return this.employees.asObservable();
   }
   loadEmployees() {
-    return this.database.executeSql('SELECT * FROM developer', []).then(data => {
+    return this.database.executeSql('SELECT * FROM employee', []).then(data => {
       let employees: Employee[] = [];
  
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
-          let skills = [];
-          if (data.rows.item(i).skills != '') {
-            skills = JSON.parse(data.rows.item(i).skills);
-          }
- 
             employees.push({ 
-            eid: data.rows.item(i).eid,
-            name: data.rows.item(i).name, 
-            gender: data.rows.item(i).gender, 
-            address: data.rows.item(i).address, 
+            empid: data.rows.item(i).empid,
+            Name: data.rows.item(i).Name, 
+            Gender: data.rows.item(i).Gender, 
+            Address: data.rows.item(i).Address, 
            });
         }
       }
@@ -77,32 +72,32 @@ export class DatabaseService {
  
   addEmployee(name,gender, address) {
     let data = [name,gender,address];
-    return this.database.executeSql('INSERT INTO employee (name, gender, address) VALUES (?, ?, ?)', data).then(data => {
+    return this.database.executeSql('INSERT INTO employee(Name, Gender, Address) VALUES (?, ?, ?)', data).then(data => {
       this.loadEmployees();
     });
   }
  
-  getEmployee(eid): Promise<Employee> {
-    return this.database.executeSql('SELECT * FROM employee WHERE eid = ?', [eid]).then(data => {
+  getEmployee(empid): Promise<Employee> {
+    return this.database.executeSql('SELECT * FROM employee WHERE empid = ?', [empid]).then(data => {
      
       return {
-        eid: data.rows.item(0).eid,
-        name: data.rows.item(0).name, 
-        gender: data.rows.item(0).gender,
-        address : data.rows.item(0).address 
+        empid: data.rows.item(0).empid,
+        Name: data.rows.item(0).Name, 
+        Gender: data.rows.item(0).Gender,
+        Address : data.rows.item(0).Address 
       }
     });
   }
  
-  deleteEmployee(eid) {
-    return this.database.executeSql('DELETE FROM employee WHERE eid = ?', [eid]).then(_ => {
+  deleteEmployee(empid) {
+    return this.database.executeSql('DELETE FROM employee WHERE empid = ?', [empid]).then(_ => {
       this.loadEmployees();
     });
   }
  
   updateEmployee(employee: Employee) {
-    let data = [employee.name, employee.gender,employee.address];
-    return this.database.executeSql(`UPDATE employee SET name = ?, gender = ?, address = ? WHERE eid = ${employee.eid}`, data).then(data => {
+    let data = [employee.Name, employee.Gender,employee.Address];
+    return this.database.executeSql(`UPDATE employee SET Name = ?, Gender = ?, Address = ? WHERE empid = ${employee.empid}`, data).then(data => {
       this.loadEmployees();
     })
   }

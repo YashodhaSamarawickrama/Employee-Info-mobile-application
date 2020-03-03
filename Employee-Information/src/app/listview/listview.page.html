@@ -10,9 +10,12 @@
     <ion-col>Emp ID</ion-col>
     <ion-col>Name</ion-col>
   </ion-row>
+ 
+  <ion-row *ngFor="let emps of employees">
+    <ion-col>{{emps.eid}} </ion-col>
+  <ion-col>{{emps.name}}</ion-col>
+  </ion-row>
 </ion-grid>
-   
-
       <!-- <div class="row" *ngFor="let emp of employees" [routerLink]="['/', '/listview', /listview.eid]"> 
         <div class="col">{{emp.eid}}</div>
         <div class="col">{{emp.name}}</div>
