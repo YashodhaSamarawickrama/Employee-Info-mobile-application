@@ -100,7 +100,7 @@ export class DatabaseService {
     });
   }
  
-  updateDeveloper(employee: Employee) {
+  updateEmployee(employee: Employee) {
     let data = [employee.name, employee.gender,employee.address];
     return this.database.executeSql(`UPDATE employee SET name = ?, gender = ?, address = ? WHERE eid = ${employee.eid}`, data).then(data => {
       this.loadEmployees();
