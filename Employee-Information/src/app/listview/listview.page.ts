@@ -10,20 +10,13 @@ import { Observable } from 'rxjs';
 export class ListviewPage implements OnInit {
   employees : Employee[]=[];
   employee = {};
-  constructor(
-    private db: DatabaseService
-     ) 
-    {
-
-   }
+  constructor(private db: DatabaseService) {}
 
   ngOnInit() {
     this.db.getDatabaseState().subscribe(rdy => {
       if (rdy) {
         this.db.getEmployees().subscribe(emps => {
           this.employees = emps;
-          console.log("hey");
-          console.log(this.employees);
         })
       }
     });
